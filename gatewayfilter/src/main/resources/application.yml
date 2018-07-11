@@ -1,0 +1,94 @@
+server:
+  port: 8790
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: between_route
+        uri: http://gnu.org
+        order: 0
+        predicates:
+        - Between=2018-01-20T17:42:47.789-07:00[America/Denver], 2018-01-21T17:42:47.789-07:00[America/Denver]
+
+      - id: post_method_route
+        uri: http://emacs.org
+        order: 1
+        predicates:
+        - Method=POST
+
+      - id: host_route
+        uri: http://baidu.com
+        order: 2
+        predicates:
+        - Path=/baidu/{segment}
+
+      - id: query_route
+        uri: http://douban.com
+        order: 3
+        predicates:
+        - Query=douban
+
+
+      - id: prefixpath_route
+        uri: http://httpbin.org/post
+        order: 4
+        predicates:
+        - Method=GET
+        - Path=/get
+        filters:
+        - PrefixPath=/scg
+
+      - id: prefixpath_route
+        uri: http://example.com
+        order: 5
+        predicates:
+        - Query=zoo
+        filters:
+        - RedirectTo=302, https://www.zoo.org/
+        - SetResponseHeader=Server, SCG-Nginx
+
+
+      - id: setresponseheader_route
+        uri: http://qq.com
+        order: 7
+        predicates:
+        - Path=/qq/{segment}
+        filters:
+        - SetResponseHeader=Server, SCG-Nginx
+
+      - id: setstatusstring_route
+        uri: http://example.com
+        order: 8
+        predicates:
+        - Path=/badrequest
+        filters:
+        - SetStatus=BAD_REQUEST
+
+      - id: setstatusint_route
+        uri: http://example.com
+        order: 9
+        predicates:
+        - Path=/401
+        filters:
+        - SetStatus=401
+
+      - id: requestratelimiter_route
+        uri: http://apa.org
+        order: 10
+        predicates:
+        - Path=/ratelimit
+        filters:
+          args:
+            redis-rate-limiter.replenishRate: 10
+            redis-rate-limiter.burstCapacity: 20
+
+
+      - id: add_response_header_route
+        uri: http://httpbin.org/get
+        order: 12
+        predicates:
+        - Method=GET
+        filters:
+        - AddResponseHeader=X-Request-CZ, Bank
+
+

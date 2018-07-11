@@ -1,0 +1,33 @@
+---
+spring:
+  application:
+    name: test-eureka
+  profiles: peer1
+server:
+  port: 9001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9002/eureka/,http://localhost:9003/eureka/
+---
+spring:
+  application:
+    name: test-eureka
+  profiles: peer2
+server:
+  port: 9002
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/,http://localhost:9003/eureka/
+---
+spring:
+  application:
+    name: test-eureka
+  profiles: peer3
+server:
+  port: 9003
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/,http://localhost:9002/eureka/

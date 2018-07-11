@@ -1,0 +1,38 @@
+version: '3'
+services:
+    addr:
+        build: ./addr
+        networks:
+            - spring_cloud
+        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
+        "-jar","addr.jar"]
+    image:
+        build: ./image
+        networks:
+            - spring_cloud
+        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
+        "-jar","client.jar"]
+    time:
+        build: ./weather
+        networks:
+            - spring_cloud
+        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
+        "-jar","time.jar"]
+    weather:
+        build: ./weather
+        networks:
+            - spring_cloud
+        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
+        "-jar","weather.jar"]
+    test_service_caller:
+        build: ./test_server_caller
+        ports:
+          - "9099:8080"
+        networks:
+            - spring_cloud
+        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
+        "-jar","test_service_caller.jar"]
+networks:
+    spring_cloud:
+        external:
+            name: spring_cloud

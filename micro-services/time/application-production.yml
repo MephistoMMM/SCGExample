@@ -1,0 +1,15 @@
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://52.197.128.235:9001/eureka/
+
+server:
+  port: 8791
+
+spring:
+  application:
+    name: service-time
+
+time:
+  default: yyyy-MM-dd HH:mm:ss

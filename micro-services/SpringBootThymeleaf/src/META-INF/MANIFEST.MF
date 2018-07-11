@@ -1,0 +1,73 @@
+Manifest-Version: 1.0
+Class-Path: spring-boot-2.0.3.RELEASE.jar dexx-collections-0.2.jar com
+ mons-beanutils-core-1.8.0.jar thymeleaf-spring5-3.0.9.RELEASE.jar ant
+ lr-runtime-3.4.jar spring-boot-actuator-2.0.3.RELEASE.jar spring-clou
+ d-netflix-archaius-2.0.0.RELEASE.jar jackson-datatype-jdk8-2.9.6.jar 
+ netflix-statistics-0.1.1.jar spring-cloud-netflix-core-2.0.0.RELEASE.
+ jar commons-math-2.2.jar jersey-apache-client4-1.19.1.jar httpclient-
+ 4.5.5.jar jsr311-api-1.1.1.jar jackson-datatype-jsr310-2.9.6.jar atto
+ parser-2.0.4.RELEASE.jar micrometer-core-1.0.5.jar compactmap-1.2.1.j
+ ar HdrHistogram-2.1.9.jar hystrix-metrics-event-stream-1.5.12.jar jod
+ a-time-2.9.9.jar eureka-core-1.9.2.jar spring-webmvc-5.0.7.RELEASE.ja
+ r json-lib-2.3-jdk15.jar guava-15.0.jar logback-core-1.2.3.jar stax-e
+ x-1.7.8.jar stringtemplate-3.2.1.jar jackson-core-2.9.6.jar rxjava-re
+ active-streams-1.2.1.jar spring-boot-starter-json-2.0.3.RELEASE.jar s
+ pring-boot-starter-tomcat-2.0.3.RELEASE.jar jackson-annotations-2.9.0
+ .jar netty-common-4.1.25.Final.jar spring-cloud-netflix-eureka-client
+ -2.0.0.RELEASE.jar spring-cloud-starter-netflix-hystrix-2.0.0.RELEASE
+ .jar spring-context-support-5.0.7.RELEASE.jar xstream-1.4.10.jar free
+ marker-2.3.28.jar log4j-to-slf4j-2.10.0.jar spring-cloud-starter-2.0.
+ 0.RELEASE.jar javax.inject-1.jar stax-api-1.0-2.jar hystrix-core-1.5.
+ 12.jar thymeleaf-extras-java8time-3.0.1.RELEASE.jar spring-boot-start
+ er-actuator-2.0.3.RELEASE.jar httpcore-4.4.9.jar jul-to-slf4j-1.7.25.
+ jar istack-commons-runtime-3.0.5.jar jersey-core-1.19.1.jar gson-2.8.
+ 5.jar jettison-1.3.7.jar spring-boot-starter-aop-2.0.3.RELEASE.jar as
+ m-5.0.4.jar spring-boot-starter-thymeleaf-2.0.3.RELEASE.jar spring-cl
+ oud-openfeign-core-2.0.0.RELEASE.jar tomcat-embed-el-8.5.31.jar ezmor
+ ph-1.0.6.jar FastInfoset-1.2.13.jar d3js-3.4.11.jar commons-codec-1.1
+ 1.jar log4j-api-2.10.0.jar commons-beanutils-1.8.0.jar javax.annotati
+ on-api-1.3.2.jar logback-classic-1.2.3.jar spring-boot-starter-2.0.3.
+ RELEASE.jar eureka-client-1.9.2.jar validation-api-2.0.1.Final.jar xp
+ p3_min-1.1.4c.jar spring-cloud-starter-netflix-eureka-client-2.0.0.RE
+ LEASE.jar commons-configuration-1.8.jar netty-transport-4.1.25.Final.
+ jar feign-slf4j-9.5.1.jar guice-4.1.0.jar spring-cloud-starter-netfli
+ x-archaius-2.0.0.RELEASE.jar rxnetty-0.4.9.jar commons-logging-1.1.1.
+ jar jackson-module-afterburner-2.9.6.jar jackson-module-parameter-nam
+ es-2.9.6.jar tomcat-embed-websocket-8.5.31.jar commons-lang3-3.7.jar 
+ jackson-databind-2.9.6.jar LatencyUtils-2.0.3.jar reactive-streams-1.
+ 0.2.jar netty-codec-4.1.25.Final.jar rxnetty-contexts-0.4.9.jar jaxb-
+ runtime-2.3.0.jar spring-boot-actuator-autoconfigure-2.0.3.RELEASE.ja
+ r jquery-2.1.1.jar spring-cloud-commons-2.0.0.RELEASE.jar spring-core
+ -5.0.7.RELEASE.jar spring-aop-5.0.7.RELEASE.jar hibernate-validator-6
+ .0.10.Final.jar spring-cloud-netflix-ribbon-2.0.0.RELEASE.jar xmlpull
+ -1.1.3.1.jar unbescape-1.1.5.RELEASE.jar jaxb-core-2.3.0.jar snakeyam
+ l-1.19.jar hystrix-serialization-1.5.12.jar slf4j-api-1.7.25.jar jaxb
+ -api-2.3.0.jar netty-codec-http-4.1.25.Final.jar commons-jxpath-1.3.j
+ ar ribbon-core-2.2.5.jar ribbon-httpclient-2.2.5.jar activation-1.1.1
+ .jar spring-jcl-5.0.7.RELEASE.jar bcprov-jdk15on-1.56.jar ribbon-eure
+ ka-2.2.5.jar classmate-1.3.4.jar spring-boot-starter-freemarker-2.0.3
+ .RELEASE.jar netty-transport-native-unix-common-4.1.25.Final.jar hyst
+ rix-javanica-1.5.12.jar antlr-2.7.7.jar stax-api-1.0.1.jar netflix-ev
+ entbus-0.3.0.jar spring-web-5.0.7.RELEASE.jar jersey-client-1.19.1.ja
+ r feign-core-9.5.1.jar spring-security-crypto-5.0.6.RELEASE.jar txw2-
+ 2.3.0.jar netflix-infix-0.3.0.jar spring-expression-5.0.7.RELEASE.jar
+  ribbon-2.2.5.jar jboss-logging-3.3.2.Final.jar spring-cloud-starter-
+ netflix-hystrix-dashboard-2.0.0.RELEASE.jar rxnetty-servo-0.4.9.jar n
+ etflix-commons-util-0.3.0.jar thymeleaf-3.0.9.RELEASE.jar spring-clou
+ d-netflix-hystrix-dashboard-2.0.0.RELEASE.jar feign-hystrix-9.5.1.jar
+  jsr305-3.0.1.jar servo-core-0.12.21.jar ribbon-loadbalancer-2.2.5.ja
+ r spring-context-5.0.7.RELEASE.jar archaius-core-0.7.6.jar spring-boo
+ t-autoconfigure-2.0.3.RELEASE.jar spring-cloud-starter-netflix-ribbon
+ -2.0.0.RELEASE.jar tomcat-embed-core-8.5.31.jar netty-transport-nativ
+ e-epoll-4.1.25.Final.jar feign-java8-9.5.1.jar woodstox-core-asl-4.4.
+ 1.jar spring-cloud-context-2.0.0.RELEASE.jar jaxb-impl-2.3.0.jar aopa
+ lliance-1.0.jar stax2-api-3.1.4.jar spring-security-rsa-1.0.5.RELEASE
+ .jar spring-cloud-starter-config-2.0.0.RELEASE.jar spring-beans-5.0.7
+ .RELEASE.jar ribbon-transport-2.2.5.jar spring-boot-starter-web-2.0.3
+ .RELEASE.jar bcpkix-jdk15on-1.56.jar netty-buffer-4.1.25.Final.jar as
+ pectjweaver-1.8.13.jar netty-resolver-4.1.25.Final.jar spring-cloud-s
+ tarter-openfeign-2.0.0.RELEASE.jar commons-collections-3.2.1.jar spri
+ ng-cloud-config-client-2.0.0.RELEASE.jar spring-boot-starter-logging-
+ 2.0.3.RELEASE.jar commons-lang-2.6.jar rxjava-1.3.8.jar
+Main-Class: com.wangkecheng.MyApp
+

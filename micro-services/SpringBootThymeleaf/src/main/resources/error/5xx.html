@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>5xx</title>
+</head>
+<body>
+	<div>5xx错误</div>
+	<div>path：[[${path}]]</div>
+	<div>status：[[${status}]]</div>
+	<div>timestamp：[[${#dates.format(timestamp, 'yyyy-MM-dd HH:mm:ss')}]]</div>
+	<div>error：[[${error}]]</div>
+	<div>exception：[[${exception}]]</div>
+	<div>message：[[${message}]]</div>
+	<div>errors：[[${errors}]]</div>
+</body>
+</html>

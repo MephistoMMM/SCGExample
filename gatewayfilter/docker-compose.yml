@@ -1,0 +1,11 @@
+version: '3'
+services:
+    gatewayfilter:
+        build: ./
+        ports:
+            - "8920:8790"
+        networks:
+            - gateway_network
+
+networks:
+  gateway_network:

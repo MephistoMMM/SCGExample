@@ -1,0 +1,6 @@
+server:
+  port: 8793
+
+spring:
+  application:
+    name: service-addr

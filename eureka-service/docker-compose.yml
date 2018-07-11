@@ -1,0 +1,33 @@
+version: '3'
+services:
+  node1:
+    container_name: eureka1
+    image: eureka:1.0
+    ports:
+      - "9001:8000"
+    networks:
+       - spring_cloud
+    command: java -Deureka.client.serviceUrl.defaultZone=http://node2:8000/eureka,http://node3:8000/eureka -jar ./target/cloud-service-0.0.1-SNAPSHOT.jar
+  node2:
+    image: eureka:1.0
+    container_name: eureka2
+    ports:
+      - "9002:8000"
+    networks:
+       - spring_cloud
+    command: java -Deureka.client.serviceUrl.defaultZone=http://node1:8000/eureka,http://node3:8000/eureka -jar ./target/cloud-service-0.0.1-SNAPSHOT.jar
+  node3:
+    image: eureka:1.0
+    container_name: eureka3
+    ports:
+      - "9003:8000"
+    networks:
+       - spring_cloud
+    command: java -Deureka.client.serviceUrl.defaultZone=http://node2:8000/eureka,http://node1:8000/eureka -jar ./target/cloud-service-0.0.1-SNAPSHOT.jar
+networks:
+  spring_cloud:
+    external:
+      name: spring_cloud
+
+
+
