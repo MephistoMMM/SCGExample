@@ -3,6 +3,11 @@ package com.rocky.addr;
 import net.sf.json.JSONObject;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.serviceregistry.Registration;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,20 +19,25 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.List;
 
 @RestController
 public class AddrController {
 
     @Autowired
     HttpServletRequest request;
+    @Autowired
+    DiscoveryClient discoveryClient;
+    @Autowired
+    Registration registration;
+
+
 
     public String getAddresses(String content, String encodingString) {
         // 这里调用淘宝API
         String urlStr = "http://ip.taobao.com/service/getIpInfo.php";
         String returnStr = getResult(urlStr, content, encodingString);
         if (returnStr != null) {
-            // 处理返回的省市区信息
-            System.out.println("(1) unicode转换成中文前的returnStr : " + returnStr);
             String[] temp = returnStr.split(",");
             if(temp.length<3){
                 return "0";//无效IP，局域网测试
@@ -39,19 +49,15 @@ public class AddrController {
     }
     public String getIpAddr(javax.servlet.http.HttpServletRequest request) {
         String ip = request.getHeader(("X-IP"));
-        System.out.println(ip+"+1");
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
             ip = request.getHeader("x-forwarded-for");
 
-            System.out.println(ip+"+2");
         }
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
-            System.out.println(ip+"+3");
         }
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
-            System.out.println(ip+"+4");
         }
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
@@ -64,7 +70,6 @@ public class AddrController {
                     e.printStackTrace();
                 }
                 ip= inet.getHostAddress();
-                System.out.println(ip+"+5");
             }
         }
         // 多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
@@ -116,6 +121,19 @@ public class AddrController {
     @RequestMapping("/")
     public String content(@RequestParam(value = "key") String key){
         String ip = getIpAddr(request);
-        return getAddresses("ip="+ip, "utf-8");
+        AddrBean addrBean = new AddrBean();
+        addrBean.setIp(ip);
+        JSONObject jObj = JSONObject.fromObject(getAddresses("ip="+ip, "utf-8"));
+
+        addrBean.setCountry(jObj.getJSONObject("data").getString("country"));
+        addrBean.setRegion(jObj.getJSONObject("data").getString("region"));
+        addrBean.setCity(jObj.getJSONObject("data").getString("city"));
+        JSONObject retObj= JSONObject.fromObject(addrBean);
+
+
+        final List<ServiceInstance> instances = discoveryClient.getInstances( registration.getServiceId() );
+        retObj.put("host",instances.get(0).getHost());
+        retObj.put("metadata",instances.get(0).getMetadata());
+        return retObj.toString();
     }
 }

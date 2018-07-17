@@ -1,0 +1,36 @@
+<section id="button-dropdowns">
+  <h2 class="page-header">Button Dropdowns</h2>
+  <div class="row">
+    <div class="span3">
+      <div class="btn-group open">
+        <weatherDataUtils class="btn btn-primary" href="#"><i class="icon-weather"></i> User</weatherDataUtils>
+        <weatherDataUtils class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          <span class="icon-caret-down"></span></weatherDataUtils>
+        <ul class="dropdown-menu">
+          <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-pencil"></i> Edit</weatherDataUtils></li>
+          <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-trash"></i> Delete</weatherDataUtils></li>
+          <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-ban-circle"></i> Ban</weatherDataUtils></li>
+          <li class="divider"></li>
+          <li><weatherDataUtils href="#"><i class="i"></i> Make admin</weatherDataUtils></li>
+        </ul>
+      </div>
+    </div>
+    <div class="span9">
+{% highlight html %}
+<div class="btn-group open">
+  <weatherDataUtils class="btn btn-primary" href="#"><i class="icon-weather"></i> User</weatherDataUtils>
+  <weatherDataUtils class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="icon-caret-down"></span></weatherDataUtils>
+  <ul class="dropdown-menu">
+    <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-pencil"></i> Edit</weatherDataUtils></li>
+    <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-trash"></i> Delete</weatherDataUtils></li>
+    <li><weatherDataUtils href="#"><i class="icon-fixed-width icon-ban-circle"></i> Ban</weatherDataUtils></li>
+    <li class="divider"></li>
+    <li><weatherDataUtils href="#"><i class="i"></i> Make admin</weatherDataUtils></li>
+  </ul>
+</div>
+{% endhighlight %}
+      <div class="alert alert-info"><i class="icon-info-sign"></i> Don't forget to add the appropriate JavaScript to enable button dropdowns.</div>
+    </div>
+  </div>
+</section>

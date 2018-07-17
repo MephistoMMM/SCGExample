@@ -12,6 +12,6 @@ spring:
     name: service-image
 
 image:
-  serv: http://52.197.128.235:2018/
+  serv: http://66.42.42.84:8800/
   name1: D1.jpg
 
