@@ -1,11 +1,13 @@
 version: '3'
 services:
-    gatewayfilter:
+    gateway:
         build: ./
         ports:
             - "8920:8790"
         networks:
-            - gateway_network
+            - spring_cloud
 
 networks:
-  gateway_network:
+  spring_cloud:
+      external:
+          name: spring_cloud

@@ -2,11 +2,34 @@
 
 PROJECT_ROOT=`pwd`
 
+type -a docker
+if [ $? -eq 1 ]; then
+    echo "PLEASE INSTALL docker ."
+    exit 1
+fi
+
+type -a docker-compose
+if [ $? -eq 1 ]; then
+    echo "PLEASE INSTALL docker-compose ."
+    exit 1
+fi
+
 echo "AUTO BUILD MAVEN..."
 cd micro-services
 ./auto-build-mvn.sh
 cd $PROJECT_ROOT
 echo "FINISH BUILDING MAVEN"
+
+echo "AUTO START GATEWAY SERVICE..."
+docker images | grep gateway > /dev/null
+if [ $? -eq 1 ]; then
+    cd gatewayfilter
+    docker-compose up -d
+    cd $PROJECT_ROOT
+else
+    echo "GATEWAY SERVICE HAS EXISTED"
+fi
+echo "FINISH STARTING GATEWAY SERVICE"
 
 echo "AUTO BUILD EUREKA SERVICE..."
 docker images | grep eureka > /dev/null
