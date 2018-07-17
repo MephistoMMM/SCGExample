@@ -1,37 +1,57 @@
 version: '3'
 services:
     addr:
-        build: ./addr
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./addr/target/addr-0.0.1-SNAPSHOT.jar
         networks:
             - spring_cloud
-        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
-        "-jar","addr.jar"]
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
     image:
-        build: ./image
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./image/target/client-0.0.1-SNAPSHOT.jar
         networks:
             - spring_cloud
-        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
-        "-jar","client.jar"]
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
     time:
-        build: ./weather
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./time/target/time-0.0.1-SNAPSHOT.jar
         networks:
             - spring_cloud
-        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
-        "-jar","time.jar"]
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
     weather:
-        build: ./weather
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./weather/target/weather-0.0.1-SNAPSHOT.jar
         networks:
             - spring_cloud
-        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
-        "-jar","weather.jar"]
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
     test_service_caller:
-        build: ./test_server_caller
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./test_server_caller/target/test_service_caller-1.0-SNAPSHOT.jar
         ports:
           - "9099:8080"
         networks:
             - spring_cloud
-        command: ["-Deureka.client.serviceUrl.defaultZone=http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka",
-        "-jar","test_service_caller.jar"]
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
 networks:
     spring_cloud:
         external:
