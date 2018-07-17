@@ -19,6 +19,10 @@ else
 fi
 echo "FINISH BUILDING EUREKA SERVICE"
 
+echo "CREATE COMMON NETWORK..."
+docker network create spring_cloud
+echo "FINISH CREATING COMMON NETWORK..."
+
 echo "START EUREKA SERVICE..."
 echo "RUN: docker-compose -f ./eureka-service/docker-compose.yml up -d"
 docker-compose -f ./eureka-service/docker-compose.yml up -d
