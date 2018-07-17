@@ -1,3 +1,5 @@
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+
 server:
   port: 8790
 spring:
@@ -38,7 +40,7 @@ spring:
         filters:
         - PrefixPath=/scg
 
-      - id: prefixpath_route
+      - id: redirect_route
         uri: http://example.com
         order: 5
         predicates:
@@ -91,4 +93,13 @@ spring:
         filters:
         - AddResponseHeader=X-Request-CZ, Bank
 
-
+      - id: filter_hystrix_route
+        uri: http://httpbin.org/get
+        order: 13
+        predicates:
+        - Method=GET
+        filters:
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
