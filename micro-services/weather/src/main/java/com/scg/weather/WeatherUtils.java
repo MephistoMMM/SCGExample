@@ -1,4 +1,4 @@
-package com.scg.scg.weather;
+package com.scg.weather;
 
 
 import java.io.BufferedReader;

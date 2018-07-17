@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: test-boot-multiple
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/,http://localhost:9002/eureka/,http://localhost:9003/eureka/

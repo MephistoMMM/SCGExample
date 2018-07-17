@@ -3,6 +3,10 @@ package com.scg.gatewayfilter;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractNameValueGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.StringUtils;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 public class AddRequestIPGatewayFilterFactory extends AbstractNameValueGatewayFilterFactory {
 

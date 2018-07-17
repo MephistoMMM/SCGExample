@@ -30,18 +30,26 @@ public class GatewayfilterApplication {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         AbstractNameValueGatewayFilterFactory.NameValueConfig config = new AbstractNameValueGatewayFilterFactory.NameValueConfig();
-        config.setName("X-IP");
+//        config.setName("X-IP");
+        config.setName("key");
         return builder.routes()
                 .route(t -> t.path("/getremoteip")
                         .and()
                         .uri(Config.getRemoteIPUri)
                 )
                 .route(r -> r.order(-1)
-                        .path("/IP")
+                        .path("/IP2")
                         .filters(f -> f.filter(new AddRequestIPGatewayFilterFactory().apply(config)))
                         .uri(Config.ip2AaddrUri)
                 )
+
+                .route(r -> r.order(-1)
+                        .path("/IP")
+                        .filters(f -> f.filter(new AddIPRequestParameterGatewayFilterFactory().apply(config)))
+                        .uri(Config.ip2AaddrUri)
+        )
                 .build();
+
     }
 
 }

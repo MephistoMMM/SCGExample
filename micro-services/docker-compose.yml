@@ -1,10 +1,13 @@
 version: '3'
 services:
     addr:
+        container_name: ADDR
         build:
             context: ./
             args:
               JAR_FILE: ./addr/target/addr-0.0.1-SNAPSHOT.jar
+        ports:
+          - "8793:8793"
         networks:
             - spring_cloud
         environment:
@@ -41,12 +44,40 @@ services:
             EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
 
     test_service_caller:
+        container_name: FEIGNTEST
         build:
             context: ./
             args:
               JAR_FILE: ./test_server_caller/target/test_service_caller-1.0-SNAPSHOT.jar
         ports:
           - "9099:8080"
+        networks:
+            - spring_cloud
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
+
+    test_service_caller_multiple:
+        container_name: MULTIPLETEST
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./test_server_caller_multiple/target/test_service_caller_multiple-1.0-SNAPSHOT.jar
+        ports:
+          - "9098:8080"
+        networks:
+            - spring_cloud
+        environment:
+            EUREKA_PEERS: http://eureka1:8000/eureka,http://eureka2:8000/eureka,http://eureka3:8000/eureka
+
+    webimg:
+        container_name: WEBIMGTEST
+        build:
+            context: ./
+            args:
+              JAR_FILE: ./webimg/target/image-caller-1.0-SNAPSHOT.jar
+        ports:
+          - "9097:8080"
         networks:
             - spring_cloud
         environment:

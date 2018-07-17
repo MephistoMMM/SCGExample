@@ -120,7 +120,7 @@ public class AddrController {
 
     @RequestMapping("/")
     public String content(@RequestParam(value = "key") String key){
-        String ip = getIpAddr(request);
+        String ip = key;
         AddrBean addrBean = new AddrBean();
         addrBean.setIp(ip);
         JSONObject jObj = JSONObject.fromObject(getAddresses("ip="+ip, "utf-8"));

@@ -12,6 +12,38 @@ spring:
         predicates:
         - Between=2018-01-20T17:42:47.789-07:00[America/Denver], 2018-01-21T17:42:47.789-07:00[America/Denver]
 
+      - id: add_response_header_route
+        uri: http://FEIGNTEST:8080/image/?key=hangzhou
+        order: 1
+        predicates:
+        - Path=/image
+        filters:
+        - AddResponseHeader=X-Request-SCG, IMAGE
+
+      - id: add_response_header_route
+        uri: http://FEIGNTEST:8080/weather/?key=hangzhou
+        order: 1
+        predicates:
+        - Path=/weather
+        filters:
+        - AddResponseHeader=X-Request-SCG, WEATHER
+
+      - id: add_response_header_route
+        uri: http://FEIGNTEST:8080/time/?key=now
+        order: -2
+        predicates:
+        - Path=/time
+        filters:
+        - AddResponseHeader=X-Request-SCG, TIME
+
+      - id: add_response_header_route
+        uri: http://WEBIMGTEST:8080/?key=D1
+        order: 1
+        predicates:
+        - Path=/imagetest
+        filters:
+        - AddResponseHeader=X-Request-SCG, IMAGETEST
+
       - id: post_method_route
         uri: http://emacs.org
         order: 1
@@ -84,20 +116,31 @@ spring:
             redis-rate-limiter.replenishRate: 10
             redis-rate-limiter.burstCapacity: 20
 
-
-      - id: add_response_header_route
-        uri: http://httpbin.org/get
+      - id: weather_view_route
+        uri: http://CADDY:80/html/weather.html
         order: 12
         predicates:
-        - Method=GET
+        - Path=/view/weather
         filters:
-        - AddResponseHeader=X-Request-CZ, Bank
+        - AddResponseHeader=X-Request-SCG, WEATHERVIEW
+        - RedirectTo=302, http://66.42.42.84:8800/html/weather.html
+
+
+      - id: add_response_header_route
+        uri: http://CADDY:80/403.html
+        order: 12
+        predicates:
+        - Path=/fallback
+        filters:
+        - AddResponseHeader=X-Request-SCG, FALLBACK
+        - RedirectTo=302, http://66.42.42.84:8800/403.html
 
       - id: filter_hystrix_route
-        uri: http://httpbin.org/get
-        order: 13
+        uri: http://MULTIPLETEST:8080/
+        order: -1
         predicates:
         - Method=GET
+        - Path=/hystrix
         filters:
         - name: Hystrix
           args:
